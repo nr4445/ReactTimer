@@ -25554,7 +25554,7 @@
 	          null,
 	          React.createElement(
 	            IndexLink,
-	            { to: '/', activeClassName: 'active' },
+	            { to: '/', activeClassName: 'active-link' },
 	            'Timmer'
 	          )
 	        ),
@@ -25563,7 +25563,7 @@
 	          null,
 	          React.createElement(
 	            Link,
-	            { to: '/counter', activeClassName: 'active' },
+	            { to: '/counter', activeClassName: 'active-link' },
 	            'Counter'
 	          )
 	        )
@@ -26021,7 +26021,7 @@
 
 
 	// module
-	exports.push([module.id, "/*\n  we leave off the '_'and also the extension while importiong\n*/\n.top-bar, .top-bar ul {\n  background-color: #333333; }\n\n/*\n you can aslos write the below expression\n .top-bar .menu-text {\n\n}\n*/\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inline;\n  padding: 3; }\n", ""]);
+	exports.push([module.id, "/*\n  we leave off the '_'and also the extension while importiong\n*/\n.top-bar, .top-bar ul {\n  background-color: #333333; }\n\n/*\n you can aslos write the below expression\n .top-bar .menu-text {\n\n}\n*/\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inline;\n  padding: 3; }\n\n.top-bar .active-link {\n  font-weight: bold; }\n", ""]);
 
 	// exports
 
