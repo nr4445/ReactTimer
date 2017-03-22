@@ -34,7 +34,6 @@ describe('Clock', () => {
       var seconds = 61;
       var expected = '01:01';
       var actual = clock.formatSeconds(seconds);
-      console.log(actual);
       expect(actual).toBe(expected);
     });
 
