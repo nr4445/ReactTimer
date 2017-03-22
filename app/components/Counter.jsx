@@ -1,11 +1,14 @@
 var React = require('react');
+var Clock = require('Clock');
 
 var Counter = React.createClass({
 
   render: function() {
     return (
-      <h3>Counter functionality</h3>
-    )
+      <div>
+        <Clock totalSeconds={129}/>
+      </div>
+    );
   }
 });
 
