@@ -7,7 +7,7 @@ var Counter = require('Counter');
 
 
 //Load foundation library
-require('style!css!foundation-sites/dist/foundation.min.css')//to style these html we need embed the chain with style loader
+//require('style!css!foundation-sites/dist/foundation.min.css')//to style these html we need embed the chain with style loader
 //firup foundation
 $(document).foundation();
 
