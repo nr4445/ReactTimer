@@ -1,6 +1,7 @@
 var React = require('react');
 var Clock = require('Clock');
 var CounterForm = require('CounterForm');
+var Controls = require('Controls');
 
 var Counter = React.createClass({
 
@@ -16,6 +17,12 @@ var Counter = React.createClass({
       switch (this.state.counterStatus) {
         case 'started':
           this.startTimer();
+          break;
+        case 'stopped':
+          this.setState({count: 0});
+        case 'paused':
+          clearInterval(this.timer)
+          this.timer = undefined;
           break;
       }
     }
@@ -36,13 +43,24 @@ var Counter = React.createClass({
       counterStatus: 'started'
     });
   },
+  
+  handleStatusChange: function(newStatus) {
+      this.setState({counterStatus: newStatus});
+  },
 
   render: function() {
-    var {count} = this.state;
+    var {count, counterStatus} = this.state;
+    var renderControlArea = () => {
+      if(counterStatus !== 'stopped') {
+        return <Controls counterStatus={counterStatus} onStatusChange={this.handleStatusChange}/>
+      }else{
+        return <CounterForm onSetCounter={this.handleSetCounter}/>
+      }
+    };
     return (
       <div>
         <Clock totalSeconds={count}/>
-        <CounterForm onSetCounter={this.handleSetCounter}/>
+        {renderControlArea()}
       </div>
     );
   }
