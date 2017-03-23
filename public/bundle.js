@@ -25652,7 +25652,30 @@
 	      }
 	    }
 	  },
+	  // /*
+	  //   componentWillMount gets fired as your component first gets mounted,
+	  //   meaning if a component gets rendered to screen, componentWillMount life cycle method gets called just before it gets shown to the screen
+	  //   this means you dont have access to refs or DOM , so if you want want make any changes to the value of an input fields or
+	  //   fetch values you can't do that in componentWillMount
+	  // */
+	  // componentWillMount: function () {
+	  //   console.log('componentWillMount');
+	  // },
+	  // /*
+	  //   componentDidMount gets fired right after everythign gets rendedred into DOM
+	  //   you are gonna have access to any refs if you wanna do any updating
+	  // */
+	  // componentDidMount: function () {
+	  //   console.log('componentDidMount');
+	  // },
 
+	  /*this function gets fired by the react right before the component gets removed from DOM,
+	   meaning its visually removed in browser.
+	   */
+	  componentWillUnmount: function componentWillUnmount() {
+	    clearInterval(this.timer);
+	    this.timer = undefined;
+	  },
 	  startTimer: function startTimer() {
 	    var _this = this;
 
@@ -25661,6 +25684,9 @@
 	      _this.setState({
 	        count: newCount >= 0 ? newCount : 0
 	      });
+	      if (newCount === 0) {
+	        _this.setState({ counterStatus: 'stopped' });
+	      }
 	    }, 1000);
 	  },
 
