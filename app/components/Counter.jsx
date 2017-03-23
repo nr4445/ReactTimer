@@ -86,6 +86,7 @@ var Counter = React.createClass({
     };
     return (
       <div>
+        <h1 className="page-title">Counter App</h1>
         <Clock totalSeconds={count}/>
         {renderControlArea()}
       </div>

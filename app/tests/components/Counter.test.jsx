@@ -37,5 +37,30 @@ describe('Counter', () => {
       },3000)
     });
 
+    it('should pause counter on paused status', (done) => {
+      var counter = TestUtils.renderIntoDocument(<Counter/>);
+      counter.handleSetCounter(3);
+      counter.handleStatusChange('paused');
+
+      setTimeout(() => {
+        expect(counter.state.count).toBe(3);
+        expect(counter.state.counterStatus).toBe('paused');
+        done();
+      }, 1001);
+    });
+
+    it('should reset count on stopped status', (done) => {
+      var counter = TestUtils.renderIntoDocument(<Counter/>);
+      counter.handleSetCounter(3);
+      counter.handleStatusChange('stopped');
+
+      setTimeout(() => {
+        expect(counter.state.count).toBe(0);
+        expect(counter.state.counterStatus).toBe('stopped');
+        done();
+      }, 1001);
+    });
+
+
   });
 });
