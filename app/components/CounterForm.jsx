@@ -10,6 +10,9 @@ var CounterForm = React.createClass({
     if (strSeconds.match(/^[0-9]*$/)) {
       this.refs.seconds.value = '';
       this.props.onSetCounter(parseInt(strSeconds, 10));
+    }else {
+      alert('Pleae enter valid no of seconds');
+      this.refs.seconds.value = '';
     }
   },
 
@@ -18,7 +21,7 @@ var CounterForm = React.createClass({
       <div>
         <form ref="form" onSubmit={this.onSubmit} className= "counter-form">
           <input type="text" ref="seconds" placeholder="Enter time in seconds"/>
-          <buton className="button expanded">Start</buton>
+          <button className="button expanded">Start</button>
         </form>
       </div>
     );

@@ -25630,12 +25630,37 @@
 
 
 	  getInitialState: function getInitialState() {
-	    return { count: 0 };
+	    return {
+	      count: 0,
+	      counterStatus: 'stopped'
+	    };
+	  },
+
+	  componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	    if (this.state.counterStatus !== prevState.counterStatus) {
+	      switch (this.state.counterStatus) {
+	        case 'started':
+	          this.startTimer();
+	          break;
+	      }
+	    }
+	  },
+
+	  startTimer: function startTimer() {
+	    var _this = this;
+
+	    this.timer = setInterval(function () {
+	      var newCount = _this.state.count - 1;
+	      _this.setState({
+	        count: newCount >= 0 ? newCount : 0
+	      });
+	    }, 1000);
 	  },
 
 	  handleSetCounter: function handleSetCounter(seconds) {
 	    this.setState({
-	      count: seconds
+	      count: seconds,
+	      counterStatus: 'started'
 	    });
 	  },
 
@@ -25724,6 +25749,9 @@
 	    if (strSeconds.match(/^[0-9]*$/)) {
 	      this.refs.seconds.value = '';
 	      this.props.onSetCounter(parseInt(strSeconds, 10));
+	    } else {
+	      alert('Pleae enter valid no of seconds');
+	      this.refs.seconds.value = '';
 	    }
 	  },
 
@@ -25736,7 +25764,7 @@
 	        { ref: 'form', onSubmit: this.onSubmit, className: 'counter-form' },
 	        React.createElement('input', { type: 'text', ref: 'seconds', placeholder: 'Enter time in seconds' }),
 	        React.createElement(
-	          'buton',
+	          'button',
 	          { className: 'button expanded' },
 	          'Start'
 	        )
